@@ -1,0 +1,73 @@
+# Define an empty list to store tasks
+tasks = []
+
+# Function to add a task
+def add_task(description, due_date, priority):
+    task = {"Description": description, "Due Date": due_date, "Priority": priority, "Completed": False}
+    tasks.append(task)
+
+# Function to display the task list
+def display_tasks():
+    for index, task in enumerate(tasks, start=1):
+        print(f"Task {index}:")
+        print(f"Description: {task['Description']}")
+        print(f"Due Date: {task['Due Date']}")
+        print(f"Priority: {task['Priority']}")
+        print(f"Completed: {'Yes' if task['Completed'] else 'No'}")
+        print("")
+
+# Function to mark a task as completed
+def mark_completed(task_index):
+    if 1 <= task_index <= len(tasks):
+        tasks[task_index - 1]["Completed"] = True
+    else:
+        print("Invalid task index.")
+
+# Function to update a task
+def update_task(task_index, description, due_date, priority):
+    if 1 <= task_index <= len(tasks):
+        tasks[task_index - 1]["Description"] = description
+        tasks[task_index - 1]["Due Date"] = due_date
+        tasks[task_index - 1]["Priority"] = priority
+    else:
+        print("Invalid task index.")
+
+# Function to remove a task
+def remove_task(task_index):
+    if 1 <= task_index <= len(tasks):
+        tasks.pop(task_index - 1)
+    else:
+        print("Invalid task index.")
+
+# Main program loop
+while True:
+    print("\nTo-Do List Menu:")
+    print("1. Add Task")
+    print("2. Display Tasks")
+    print("3. Mark Task as Completed")
+    print("4. Update Task")
+    print("5. Remove Task")
+    print("6. Exit")
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        description = input("Enter task description: ")
+        due_date = input("Enter due date: ")
+        priority = input("Enter priority: ")
+        add_task(description, due_date, priority)
+    elif choice == "2":
+        display_tasks()
+    elif choice == "3":
+        task_index = int(input("Enter the task index to mark as completed: "))
+        mark_completed(task_index)
+    elif choice == "4":
+        task_index = int(input("Enter the task index to update: "))
+        description = input("Enter updated description: ")
+        due_date = input("Enter updated due date: ")
+        priority = input("Enter updated priority: ")
+        update_task(task_index, description, due_date, priority)
+    elif choice == "5":
+        task_index = int(input("Enter the task index to remove: "))
+        remove_task(task_index)
+    elif choice == "6":
+        break
